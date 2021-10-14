@@ -1,26 +1,25 @@
 import requests
 import json
 import controller
+import view
 
 
 # class to call rest clients and get response
+
+
 class RestClientResponse:
     url = 'http://localhost:8000/itemssss'
 
     def call_all_item(self):
-
         return requests.get(self.url)
 
     def call_delete_item(self, item_id):
-
         return requests.delete(self.url + '/' + item_id)
 
     def call_search_item(self, item_id):
-
         return requests.get(self.url + '/' + item_id)
 
     def call_post_item(self, item_id, item_name, item_price, item_offer):
-
         save_item = {
             "id": item_id,
             "name": item_name,
@@ -62,6 +61,8 @@ class ItemRestClient:
             pass
         else:
             print('\nProduct not found! Enter valid product ID.')
+            update_again = input('\n|Type [Y] to update another product | Press any key to return to main menu| ')
+            view.do_again(update_again)
             controller.update_item()
 
     # function to validate if ID exists
@@ -72,6 +73,7 @@ class ItemRestClient:
             pass
         else:
             print('\nProduct ID exists! Input a different product ID.')
+            view.do_again(input('\n|Type [Y] to enter product ID again | Press any key to return to main menu| '))
             controller.new_item()
 
     # function to update item by ID

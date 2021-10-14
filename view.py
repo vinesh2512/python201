@@ -70,16 +70,17 @@ def price_input():
 def input_not_int():
     while True:
         try:
-            item_id = int(input('Enter product ID: '))
+            item_id = int(input('\nProduct ID: '))
             break
         except ValueError:
             print('\nInvalid ID format! Only integers allowed.\n')
+            do_again(input('|Type [Y] to enter product ID again | Press any key to return to main menu| '))
     return item_id
 
 
 # function to validate input to repeat action else will return to main menu
-def test_menu(input1):
-    if input1 == 'Y' or input1 == 'y':
+def do_again(input_again):
+    if input_again == 'Y' or input_again == 'y':
         pass
     else:
         controller.start_up()
